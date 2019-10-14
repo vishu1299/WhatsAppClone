@@ -24,7 +24,7 @@ class _ChatScreenState extends State<ChatScreen>{
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 new Text(
-                  dummyData[i].time,
+                  dummyData[i].name,
                   style: new TextStyle(
                     color: Colors.grey[600],fontSize: 17.0
                   ),

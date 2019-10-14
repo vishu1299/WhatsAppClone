@@ -1,3 +1,4 @@
+import 'package:WhatsApp/screens/stories_viewer.dart';
 import 'package:flutter/material.dart';
 import '../models/status_model.dart';
 
@@ -47,15 +48,16 @@ class _StatusScreenState extends State<StatusScreen>{
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   new Text(
-                    dummyData[i].time,
+                    "My Status",
                     style: new TextStyle(
-                      color: Colors.grey[600],
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold ,
                       fontSize: 15.0),
                   )
                 ],
               ),
               subtitle: new Container(
-                padding: const EdgeInsets.only(top: 1.0),
+                padding: const EdgeInsets.only(bottom: 5.0),
                 child: new Text(
                   dummyData[i].time,
                   style: new TextStyle(
@@ -111,6 +113,10 @@ class _StatusScreenState extends State<StatusScreen>{
                   ),
                 ),
               ),
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(
+                        builder: (context) => StoriesViewer()
+                    ))
             )
           ],
         )

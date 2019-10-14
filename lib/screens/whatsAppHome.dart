@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
 import 'call_screen.dart';
+import 'message_screen.dart';
+import 'status_screen.dart';
+import 'camera_screen.dart';
 
 class WhatsAppHome extends StatelessWidget {
+  final cameras = true;
   final tabs = <Widget>[
     Tab(icon: Icon(Icons.camera_alt)),
     Tab(text: 'CHATS'),
@@ -21,7 +25,33 @@ class WhatsAppHome extends StatelessWidget {
           appBar: AppBar(
               actions: <Widget>[
                 IconButton(icon: Icon(Icons.search), onPressed: () {}),
-                IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
+                new PopupMenuButton<MoreMenu>(
+                  padding: const EdgeInsets.all(0.0),
+                  tooltip: "More options",
+                  itemBuilder: (BuildContext context) => <PopupMenuEntry<MoreMenu>>[
+                    const PopupMenuItem<MoreMenu>(
+                      value: MoreMenu.view_contact,
+                      child: Text('New group'),
+                      ),
+                    const PopupMenuItem<MoreMenu>(
+                      value: MoreMenu.media,
+                      child: Text('New broadcast'),
+                      ),
+                    const PopupMenuItem<MoreMenu>(
+                      value: MoreMenu.search,
+                      child: Text('WhatsApp Web'),
+                      ),
+                    const PopupMenuItem<MoreMenu>(
+                      value: MoreMenu.mute,
+                      child: Text('Starred messages'),
+                      ),
+                    const PopupMenuItem<MoreMenu>(
+                      value: MoreMenu.wallpaper,
+                      child: Text('Settings'),
+                      ),
+                  ],
+                  )
+                //IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
               ],
               backgroundColor: new Color(0xff075E54),
               bottom: TabBar(
@@ -41,11 +71,12 @@ class WhatsAppHome extends StatelessWidget {
             child: Icon(Icons.chat),
             backgroundColor: Colors.green,
           ),
-          body: TabBarView(
+          body: new TabBarView(
             children: <Widget>[
-              Icon(Icons.add_a_photo),
-              ChatScreen(),
-              Icon(Icons.star),
+              //new CameraScreen(widgets.cameras),
+              Icon(Icons.camera_alt),
+              new ChatScreen(),
+              new StatusScreen(),
               new CallScreen(),
             ],
           ),
@@ -87,7 +118,7 @@ class ChatRoom extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: true,
-      backgroundColor: Color(0xFFECE5DD),
+      backgroundColor: Color(0xff075E54),
       appBar: AppBar(
           titleSpacing: 0.0,
           title: Row(
